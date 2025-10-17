@@ -1,0 +1,4 @@
+:host ::ng-deep .p-dialog {
+  background-color: #f9fafb !important;
+  color: #1e2939 !important;
+}

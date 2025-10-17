@@ -1,0 +1,40 @@
+<header class="gradient-bg text-white shadow-lg">
+  <div class="mx-auto p-4 bg-orange-900 flex justify-between w-full">
+    <span class="text-xl text-purple-100">Desafío Técnico - Calcular elementos optimos</span>
+
+    <p-button
+      (onClick)="toggleModalCalories(true)"
+      icon="pi pi-microchip-ai"
+      label="Calcular"
+      severity="secondary"
+    />
+  </div>
+</header>
+
+<div class="w-full p-4">
+  <app-table
+    [table]="table()"
+    (editItem)="toggleModal(true, $event)"
+    (tableChange)="onTableChange($event)"
+    (deleteItem)="onDeleteItem($event)"
+    (newItem)="toggleModal(true, null)"
+  />
+
+  <section class="w-full p-4">
+    <app-information />
+  </section>
+</div>
+
+@if(showCalories) {
+<app-optimal-elements [show]="showCalories" (closeModal)="toggleModalCalories(false)" />
+} @if(showModal) {
+<app-create-update-modal
+  [id]="itemId"
+  [show]="showModal"
+  (closeModal)="toggleModal(false, null)"
+  (savedData)="reloadTable()"
+/>
+}
+
+<p-toast />
+<p-confirmdialog />

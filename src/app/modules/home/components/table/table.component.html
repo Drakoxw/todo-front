@@ -1,0 +1,76 @@
+<p-table
+  #dt
+  [value]="table().items"
+  [rows]="rowSize"
+  [first]="first"
+  [paginator]="true"
+  [showCurrentPageReport]="true"
+  [totalRecords]="totalRecords"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  dataKey="id"
+  [lazy]="true"
+  [loading]="loadingTable"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+  (onLazyLoad)="loadTable($event)"
+  [rowsPerPageOptions]="[3, 5, 10]"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex justify-between items-center flex-wrap">
+      <h5 class="m-0">Listado de Snacks</h5>
+
+      <div class="flex gap-2">
+        <p-iconfield>
+          <p-inputicon class="pi pi-search" />
+          <input
+            type="text"
+            (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+            pInputText
+            placeholder="Buscar"
+          />
+        </p-iconfield>
+
+        <p-button
+          icon="pi pi-plus"
+          label="Nuevo Snack"
+          (onClick)="newItem.emit()"
+          severity="success"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th style="width: 20%">Id</th>
+      <th style="width: 20%">Nombre</th>
+      <th style="width: 20%">Calorias</th>
+      <th style="width: 20%">Peso</th>
+      <th style="width: 20%">
+        <p class="text-center">Acciones</p>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-customer>
+    <tr>
+      <td>{{ customer.id }}</td>
+      <td>{{ customer.name }}</td>
+      <td>{{ customer.calories }}</td>
+      <td>{{ customer.weight }}</td>
+      <td>
+        <div class="flex justify-center gap-3">
+          <p-button
+            icon="pi pi-pen-to-square"
+            (onClick)="editItem.emit(customer.id)"
+            [rounded]="true"
+            severity="info"
+          />
+          <p-button
+            icon="pi pi-trash"
+            (onClick)="deleteItem.emit(customer.id)"
+            [rounded]="true"
+            severity="danger"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

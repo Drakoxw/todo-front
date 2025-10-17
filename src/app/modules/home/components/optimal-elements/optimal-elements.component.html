@@ -1,0 +1,82 @@
+<p-dialog
+  header="Optimiza tu desafío"
+  [(visible)]="show"
+  [modal]="true"
+  (onHide)="closeModal.emit()"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  @if (data().items.length > 0) {
+  <div class="border-l-4 border-green-500 pl-6 py-2">
+    <h4 class="font-bold text-lg text-green-700 mb-2">Encontramos {{ data().items.length }} elementos</h4>
+    <p class="text-sm text-gray-600 mb-3">
+      Estos son los elementos con menor peso y calorias necesarias:
+    </p>
+    <div class="bg-gray-50 rounded p-4">
+      <p class="font-mono text-xs text-gray-700 mb-2"><strong>Te recomendamos:</strong></p>
+      <ul class="font-mono text-xs text-gray-600 space-y-1">
+        @for(item of data().items; track item.id) {
+          <li>• {{ item.name }} (<b>{{ item.calories }}</b>  calorias)</li>
+        }
+      </ul>
+    </div>
+    <div class="mt-3 bg-green-50 border border-green-200 rounded p-3">
+      <p class="text-xs text-green-800">
+        <strong>Peso total {{ data().totalWeight }}</strong>  -
+        <strong>Calorias {{ data().totalCalories }}</strong>
+      </p>
+    </div>
+  </div>
+  } @else {
+  <ng-container *ngTemplateOutlet="formTemplate"></ng-container>
+
+  }
+</p-dialog>
+
+<ng-template #formTemplate>
+  <form [formGroup]="form" class="w-full flex flex-col md:flex-row gap-4 justify-between flex-wrap">
+    <div class="mb-4 w-full md:w-5/12 flex gap-2">
+      <label for="minCalories">Minimo de calorias</label>
+      <div class="w-full">
+        <p-inputnumber
+          formControlName="minCalories"
+          class="w-full"
+          [invalid]="form.get('minCalories') | formControlError"
+        ></p-inputnumber>
+        @if(form.get('minCalories') | formControlError) {
+        <p-message severity="error" size="small" variant="simple"
+          >El minimo de calorias es requerido.</p-message
+        >
+        }
+      </div>
+    </div>
+
+    <div class="mb-4 w-full md:w-5/12 flex gap-2">
+      <label for="maxWeight">Peso Máximo</label>
+      <div class="w-full">
+        <p-inputnumber
+          formControlName="maxWeight"
+          class="w-full"
+          [invalid]="form.get('maxWeight') | formControlError"
+        ></p-inputnumber>
+
+        @if(form.get('maxWeight') | formControlError) {
+        <p-message severity="error" size="small" variant="simple">El peso es requerido.</p-message>
+        }
+      </div>
+    </div>
+  </form>
+
+  <div class="flex justify-center items-center gap-4">
+    <p-button
+      [disabled]="form.invalid || loading"
+      [icon]="loading ? 'pi pi-spin pi-spinner' : ''"
+      label="Calcular"
+      (click)="calculateOptimalElements()"
+      [raised]="true"
+      severity="success"
+    />
+  </div>
+</ng-template>

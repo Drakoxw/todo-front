@@ -1,0 +1,80 @@
+<!-- Resumen -->
+<section id="resumen" class="mb-16">
+  <h2 class="text-3xl font-bold mb-6 text-gray-800">Resumen del Proyecto</h2>
+  <div class="bg-white rounded-lg shadow-md p-8 force-ajust">
+    <p class="text-lg text-gray-700 mb-4">
+      Aplicación web construida con <strong>Angular V20</strong> que permite a los usuarios crear,
+      editar y eliminar <strong>Snacks/Elementos</strong>
+      y calcular un conjunto de elementos optimos con el minimo de calorias necesarios y el menor
+      peso posible.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-8">
+      <div class="bg-purple-50 rounded-lg p-6">
+        <div class="text-purple-600 font-bold text-lg mb-2">Stack Tecnológico</div>
+        <ul class="text-sm text-gray-700 space-y-1">
+          <li>• <b>Angular 20</b> con signals</li>
+          <li>• <b>Abstinencia de ZoneJs</b></li>
+          <li>• TypeScript</li>
+          <li>• Tailwind CSS</li>
+          <li>• NgPrime</li>
+          <li>• RxJS</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 rounded-lg p-6">
+        <div class="text-blue-600 font-bold text-lg mb-2">Características Clave</div>
+        <ul class="text-sm text-gray-700 space-y-1">
+          <li>• Calculo de recursos optimos</li>
+          <li>• Operaciones CRUD</li>
+          <li>• Integración con Back</li>
+          <li>• Api Rest</li>
+          <li>• Validación de datos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- razonamientos -->
+<section id="razonamientos" class="mb-16">
+  <div class="bg-white rounded-lg shadow-md p-8">
+    <h3 class="text-xl font-semibold mb-4 text-gray-800">RAZONAMIENTO LOGICO</h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-gray-200 rounded-lg p-6">
+        <h4 class="font-bold text-purple-700 mb-3">Ejercicio #1: Completar la secuencia</h4>
+        <div class="w-full">
+          <p-image src="/assets/responses/respuesta-1.jpeg" alt="response-1" width="auto" />
+        </div>
+      </div>
+
+      <div class="border border-gray-200 rounded-lg p-6">
+        <h4 class="font-bold text-blue-700 mb-3">Ejercicio #2: ¿Desea saber algo?</h4>
+        <div class="w-full">
+          <p-image src="/assets/responses/respuesta-2.jpeg" alt="response-2" width="auto" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #optTemplate>
+
+</ng-template>
+
+<ng-template #svgTemplate let-color="color">
+  @let styeClass = `text-${color}-500`;
+  <svg
+    class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0"
+    [class]="styeClass"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+      clip-rule="evenodd"
+    />
+  </svg>
+</ng-template>
