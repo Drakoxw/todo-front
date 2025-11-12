@@ -1,4 +1,4 @@
-<nav class="bg-white shadow-lg h-16">
+<nav [class]="showNav ? 'bg-white' : 'bg-gradient-to-r from-indigo-600 to-purple-600'"  class="shadow-lg h-16" >
   @if (showNav) {
   <div class="max-w-[1400px] mx-auto pl-4 pr-8">
     <div class="flex justify-between">
@@ -16,7 +16,7 @@
             />
             <div class="flex flex-col ml-4">
               <span class="font-bold text-xl sm:text-3xl"
-                >Tienda de Snacks</span
+                >TO-DO App</span
               >
               <small
                 class="text-[8px] hidden text-end font-bold text-gray-700 sm:block"

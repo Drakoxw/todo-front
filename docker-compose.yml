@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  map-app:
+  front-app:
     build:
       context: .
       dockerfile: ./Dockerfile

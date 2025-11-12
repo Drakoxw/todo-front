@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MapLibre": {
+    "front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -22,8 +22,7 @@
               }
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/maplibre-gl/dist/maplibre-gl.css"
+              "src/styles.css"
             ]
           },
           "configurations": {
@@ -54,10 +53,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "MapLibre:build:production"
+              "buildTarget": "front:build:production"
             },
             "development": {
-              "buildTarget": "MapLibre:build:development"
+              "buildTarget": "front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,6 +77,17 @@
             "styles": [
               "src/styles.css"
             ]
+          }
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "front:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "front:serve:production"
+            }
           }
         }
       }

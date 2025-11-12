@@ -6,9 +6,8 @@ export interface PageData<T> {
   page: number,
   pageSize: number
 }
-export interface PageResponse<T> extends ResponseBase<PageData<T>> {
 
-}
+export interface PageResponse<T> extends ResponseBase<PageData<T>> {}
 
 export interface Pagination {
   page: number;

@@ -10,7 +10,9 @@ import Aura from '@primeuix/themes/aura';
 
 import { routes } from './app.routes';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideStore } from '@ngrx/store';
+import { tokenterceptor } from './core/interceptors';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,13 +20,19 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([tokenterceptor]),
+    ),
     providePrimeNG({
       theme: {
         preset: Aura,
+        options: {
+          darkModeSelector: '.app-dark'
+        }
       },
     }),
     ConfirmationService,
     MessageService,
+    provideStore()
   ],
 };

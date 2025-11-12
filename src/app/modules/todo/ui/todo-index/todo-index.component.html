@@ -1,0 +1,110 @@
+<div class="h-full bg-gray-50 flex flex-col items-center py-10 px-4">
+  <div class="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-2xl font-semibold text-gray-700">Mis Tareas</h2>
+      <button
+        pButton
+        icon="pi pi-plus"
+        label="Nueva Tarea"
+        class="p-button-sm p-button-success"
+        (click)="openNew()"
+      ></button>
+    </div>
+
+    <div class="flex gap-2 mb-4">
+      <button
+        pButton
+        [class.p-button-outlined]="filter() !== 'all'"
+        label="Todas"
+        (click)="onFilterChange('all')"
+      ></button>
+      <button
+        pButton
+        [class.p-button-outlined]="filter() !== 'completed'"
+        label="Completadas"
+        (click)="onFilterChange('completed')"
+      ></button>
+      <button
+        pButton
+        [class.p-button-outlined]="filter() !== 'pending'"
+        label="Pendientes"
+        (click)="onFilterChange('pending')"
+      ></button>
+    </div>
+
+    <p-table
+      [value]="todoData()"
+      dataKey="id"
+      [rows]="10"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [loading]="loading()"
+      [paginator]="true"
+      class="rounded-xl overflow-hidden"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 50px"></th>
+          <th>Tarea</th>
+          <th style="width: 150px">Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-task>
+        <tr>
+          <td>
+            <p-checkbox
+              [(ngModel)]="task.isCompleted"
+              binary="true"
+              (onChange)="toggleComplete(task)"
+            ></p-checkbox>
+          </td>
+          <td [ngClass]="{ 'line-through text-gray-400': task.isCompleted }">{{ task.title }}</td>
+          <td class="flex gap-2">
+            <button
+              pButton
+              icon="pi pi-pencil"
+              pTooltip="Editar tarea"
+              class="p-button-text p-button-info"
+              (click)="editTask(task)"
+            ></button>
+            <button
+              pButton
+              icon="pi pi-trash"
+              pTooltip="Eliminar tarea"
+              class="p-button-text p-button-danger"
+              (click)="confirmDelete(task)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- Diálogo para agregar/editar -->
+  <p-dialog
+    [(visible)]="showDialog"
+    header="Tarea"
+    [modal]="true"
+    [closable]="true"
+    [style]="{ width: '400px' }"
+  >
+    <div class="flex flex-col gap-4">
+      <input
+        type="text"
+        pInputText
+        placeholder="Título de la tarea"
+        [(ngModel)]="editingTask().title"
+        class="w-full border rounded-lg px-3 py-2"
+      />
+      <div class="flex justify-end gap-2">
+        <button
+          pButton
+          label="Cancelar"
+          class="p-button-secondary"
+          (click)="showDialog.set(false)"
+        ></button>
+        <button pButton label="Guardar" class="p-button-success" (click)="saveTask()"></button>
+      </div>
+    </div>
+  </p-dialog>
+</div>
+<p-confirmDialog></p-confirmDialog>

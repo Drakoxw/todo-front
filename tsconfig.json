@@ -16,6 +16,15 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
+      "@todo-module/*": [
+        "./src/app/modules/todo/*"
+      ],
+      "@logout-module/*": [
+        "./src/app/modules/logout/*"
+      ],
+      "@auth-module/*": [
+        "./src/app/modules/auth/*"
+      ],
       "@home-module/*": [
         "./src/app/modules/home/*"
       ],
@@ -27,6 +36,12 @@
       ],
       "@services/*": [
         "./src/app/core/services/*"
+      ],
+      "@store/*": [
+        "./src/app/core/store/*"
+      ],
+      "@mocks/*": [
+        "./src/app/core/mocks/*"
       ],
       "@interfaces/*": [
         "./src/app/core/interfaces/*"

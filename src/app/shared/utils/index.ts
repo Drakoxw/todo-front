@@ -1,2 +1,2 @@
-export * from './file.utils'
 export * from './errorCatch'
+export * from './token'

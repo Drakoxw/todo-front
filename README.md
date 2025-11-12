@@ -1,4 +1,4 @@
-# 🌍 Front Opa
+# 🌍 FRONT APP
 
 Este proyecto es una aplicación web construida con **Angular** y desplegada en **Netlify** o usando **Docker**.
 
@@ -18,16 +18,7 @@ Este proyecto es una aplicación web construida con **Angular** y desplegada en 
 
 ## 🌐 App Desplegada
 Despliegue realizado en netlify
-* [Inicio](https://snacks-opa.netlify.app)
 
-
-## 🚀 Instalación local
-
-Clonar el repositorio:
-```bash
-git clone https://github.com/Drakoxw/front-opa.git
-cd map-editor
-```
 
 Instalar dependencias e iniciar app
 ```sh
@@ -48,12 +39,28 @@ docker-compose up --build -d
 
 Crear el contenedor e iniciarlo
 ```sh
-docker build -t front-opa-app .
+docker build -t front-app .
 ```
 ```sh
-docker run -p 4000:80 front-opa-app
+docker run -p 4000:80 front-app
 ```
 > Abre el navegador: [http://127.0.0.1:4000](http://127.0.0.1:4000)
+
+## 🔬 Pruebas Unitarias
+
+```sh
+npm run test
+```
+
+## 🔭 Pruebas E2E
+
+```sh
+npm run e2e
+```
+> Ver reporte
+```sh
+npx playwright show-report
+```
 
 ## 👤 Autor
 
