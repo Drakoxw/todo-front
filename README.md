@@ -17,9 +17,10 @@ Este proyecto es una aplicación web construida con **Angular** y desplegada en 
 ---
 
 ## 🌐 App Desplegada
-Despliegue realizado en netlify
+Despliegue realizado en netlify [Ir](https://drako-todo-app.netlify.app)
 
 
+## 🧬 App Local
 Instalar dependencias e iniciar app
 ```sh
 npm install
@@ -61,6 +62,22 @@ npm run e2e
 ```sh
 npx playwright show-report
 ```
+
+## 🔬 Decisiones técnicas
+
+* Para aprovechar las nuevas caracteristicas se uso Angular20
+* Arquitectura en modulos y MVVM
+* Los servicios que hacen consumos de Apis esta separados de los servicios que usan los componentes y entregan una respuesta limpia en cada request.
+* El estado global de la App se implemento un Store con NgRxStore y Signals, donde presta una manera instantanea y optima de gestionar los datos y con la facilidad de cambiar de persistencia a `localSession`, `localStorage`, `IndexDB`
+* Se usa los Guards para proteger las rutas.
+* Carga perezosa de y en los Routers de los modulos.
+* Interceptor para injectar el token.
+* PrimeNg para IU de celulas y atomos.
+* Tailwind para el CSS.
+* Karma y Jest para pruebas unitarias.
+* Playwright para las pruebas `E2E`
+* Uso de CustomValidators y CustomPipes
+
 
 ## 👤 Autor
 
